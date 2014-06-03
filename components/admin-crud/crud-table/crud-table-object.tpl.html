@@ -1,0 +1,42 @@
+<!-- name="sun.diff.components.adminCrud/crud-table-object.tpl.html" -->
+<div class="col-md-12">
+    <form name="editRow" class="form-horizontal" role="form" ng-submit="saveObject()">
+
+        <div class="row">
+            <div class="col-md-12" ng-repeat="field in fields" ng-class="errors[field.name] && 'has-error'">
+                <div class="form-group">
+                    <label for="{{ name }}-id" class="col-sm-3 control-label">{{ field.name | toHuman }}</label>
+
+                    <div class="col-sm-8">
+                        <ng-switch on="field.inputType">
+
+                            <div class="btn-group" ng-switch-when="yes-no">
+                                <label class="btn btn-default" ng-model="currentRow[field.name]"
+                                       btn-radio="true">Yes</label>
+                                <label class="btn btn-default" ng-model="currentRow[field.name]"
+                                       btn-radio="false">No</label>
+                            </div>
+                            <input ng-switch-default
+                                   type="text"
+                                   class="form-control"
+                                   id="{{ name }}-id"
+                                   placeholder="{{ field.name | toHuman }}"
+                                   ng-model="currentRow[field.name]">
+                        </ng-switch>
+                        <div ng-repeat="msg in errors[field.name]">
+                            <span class="help-block">{{ msg }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-3">
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-primary" value="Save"/>
+                    <a class="btn btn-default btn-group-lg" ng-click="resetObject()">Reset</a>
+                    <a class="btn btn-default btn-group-lg" ng-click="cancelEdit()">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

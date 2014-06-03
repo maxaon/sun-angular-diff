@@ -1,0 +1,27 @@
+<div class="form-group" ng-class="formClass">
+
+    <label for="[[id]]"
+           ng-class="noLabel && 'sr-only' "
+           class="control-label col-md-3"
+            >
+        [[label]]
+    </label>
+
+    <div ng-class="noLabel||'col-md-9'">
+
+        <select class="form-control"
+                name="[[name]]"
+                ng-model="ngModel"
+                ng-options="kv.0 as kv.1 for kv in flatOptions"
+                id="[[id]]"
+                >
+            <option value="" ng-if="allowEmpty">[[emptyLabel]]</option>
+        </select>
+        <input
+                name="[[name]]"
+                class="form-control" type="[[type]]" id="[[id]]" placeholder="[[label]]"
+                ng-model="ngModel">
+        
+        <span class="help-block">{{ helpText }}</span>
+    </div>
+</div>

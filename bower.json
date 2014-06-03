@@ -1,0 +1,22 @@
+{
+  "name": "sun-angular-diff",
+  "version": "0.0.1",
+  "homepage": "https://github.com/maxaon/sun-angular-diff",
+  "authors": [
+    "maxaon <maxaon@xakep.ru>"
+  ],
+  "description": "Different things on angular",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": ">= 1.2.6"
+  },
+  "main": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
