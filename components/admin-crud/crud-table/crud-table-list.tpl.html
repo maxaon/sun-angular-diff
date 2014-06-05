@@ -31,8 +31,13 @@
             ng-class="{'active': row.$selected}">
 
 
-            <td ng-repeat="column in displayColumns" sortable="column.field">
-                {{ row[column.name] }}
+            <td ng-repeat="column in displayColumns" sortable="column.field" ng-switch="column.inputType">
+                <span ng-switch-when="date">
+                    {{ row[column.name]|date:'dd.MM.yyyy' }}
+                </span>
+                <span ng-switch-default="">
+                    {{ row[column.name] }}
+                </span>
             </td>
             <td>
                 <a ng-click="remove(row)"><span class="fa fa-trash-o"></span></a>

@@ -5,7 +5,7 @@
   'use strict';
   var module = angular.module('sun.diff.conponents.promise', [  ]);
   module.config(function ($provide) {
-    $provide.decorator("$q", function ($delegate, $rootScope, $exceptionHandler) {
+    $provide.decorator("$q", ["$delegate", "$rootScope", "$exceptionHandler", function ($delegate, $rootScope, $exceptionHandler) {
       return qFactory(function (callback) {
         $rootScope.$evalAsync(callback);
       }, $exceptionHandler);
@@ -382,6 +382,6 @@
 //        return deffered;
 //      }
 //      return $delegate;
-    });
+    }]);
   })
 }(angular));

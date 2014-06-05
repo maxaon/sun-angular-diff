@@ -8,7 +8,7 @@
     if ($stateProvider.$states === undefined) {
       throw  new Error('ui.router.$stateProvider is not patched!');
     }
-    $provide.decorator('$state', function ($delegate) {
+    $provide.decorator('$state', ['$delegate', function ($delegate) {
       $delegate.addState = $stateProvider.state.bind($stateProvider);
       $delegate.getNative = function (stateName) {
         if (stateName.indexOf('.') === 0 || stateName.indexOf('^') === 0) {
@@ -34,7 +34,7 @@
         });
       };
       return $delegate;
-    });
+    }]);
   });
 
 

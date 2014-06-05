@@ -16,7 +16,6 @@
         formConfig: '='
       },
       template: '<div ui-view="viewContent">View content</div>'
-//      controller: 'CrudTableController'
     };
   });
 

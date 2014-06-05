@@ -9,8 +9,7 @@
     'sun.diff.filters.naturalSort',
     'sun.diff.components.route',
     'ui.router',
-    'ui.bootstrap.buttons',
-    'ui.bootstrap.modal',
+    'ui.bootstrap',
     'sun.diff.components.messageBox'
   ]);
   adminCrud.provider('CrudControllerGenerator', function ($stateProvider) {
@@ -32,9 +31,9 @@
       var states = {base: parentState};
       var names = genName(parentState);
       var baseResolve = {
-        crud: function (CrudControllerGenerator) {
+        crud: ["CrudControllerGenerator", function (CrudControllerGenerator) {
           return CrudControllerGenerator.get(resourceName);
-        },
+        }],
         config: function () {
           return config;
         },
@@ -61,11 +60,11 @@
         relatedStates: names,
         parent: parentState.name,
         resolve: _.extend({}, baseResolve, {
-          row: function ($stateParams, $injector) {
+          row: ["$stateParams", "$injector", function ($stateParams, $injector) {
             var resource = $injector.get(resourceName);
             return new resource.model();
           }
-        }),
+          ]        }),
         views: {
           viewContent: {
             templateUrl: 'sun.diff.components.adminCrud/crud-table-object.tpl.html',
@@ -79,13 +78,14 @@
         relatedStates: names,
         parent: parentState.name,
         resolve: _.extend({}, baseResolve, {
-          row: function ($stateParams, $injector) {
+          row: ["$stateParams", "$injector", function ($stateParams, $injector) {
             var resource = $injector.get(resourceName);
             return resource.find($stateParams.id).$promise.then(function (respond) {
                 return respond.resource;
               }
             );
           }
+          ]
         }),
         views: {
           viewContent: {

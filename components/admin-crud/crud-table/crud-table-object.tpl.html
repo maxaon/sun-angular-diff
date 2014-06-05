@@ -10,6 +10,21 @@
                     <div class="col-sm-8">
                         <ng-switch on="field.inputType">
 
+                            <textarea ng-switch-when="textarea"
+                                      class="col-md-12 form-control"
+                                      ng-model="currentRow[field.name]"></textarea>
+
+                            <p ng-switch-when="date" class="input-group" ng-controller="testController">
+                                <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy"
+                                       ng-model="currentRow[field.name]"
+                                       is-open="opened"
+                                       format="dd.MM.yyyy"
+                                       close-text="Close"/>
+                                          <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                    class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                            </p>
                             <div class="btn-group" ng-switch-when="yes-no">
                                 <label class="btn btn-default" ng-model="currentRow[field.name]"
                                        btn-radio="true">Yes</label>

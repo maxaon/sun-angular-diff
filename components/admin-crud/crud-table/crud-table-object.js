@@ -16,6 +16,8 @@
 
         $scope.currentRow = row;
         $scope.fields = fields;
+        $scope.dtopened = false;
+
 
         $state.current.pageTitle = substituteTags(formConfig.pageTitle);
         $state.current.breadcrumbTitle = substituteTags(formConfig.breadcrumbTitle);
@@ -58,5 +60,13 @@
 
   module.controller('CrudTableCreateController', CreateController(CREATE));
   module.controller('CrudTableEditController', CreateController(EDIT));
+  module.controller('testController', ['$scope', function ($scope) {
+    $scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+      };
+  }]);
 
 }(angular));
