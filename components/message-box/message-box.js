@@ -2,7 +2,9 @@
  * Created by Maxaon on 6/2/2014.
  */
 (function (angular, undefined) {
+  "use strict";
   var module = angular.module('sun.diff.components.messageBox', [
+    'ngSanitize',
     'ui.bootstrap.modal',
     "template/modal/backdrop.html",
     "template/modal/window.html"
@@ -13,8 +15,9 @@
         return button.toLocaleLowerCase().replace(/[^a-zA-Z0-9]+/g, "_");
       }
 
-      if (_.isArray(buttons) && buttons.length < 1)
+      if (_.isArray(buttons) && buttons.length < 1) {
         throw new Error("At least one button must be provided");
+      }
       buttons = buttons || ['Ok'];
       defaultButton = defaultButton || buttons[0];
       var modal = $modal.open({
@@ -27,8 +30,7 @@
           $scope.view = view;
           $scope.pressed = function (button) {
             $modalInstance.close(button);
-
-          }
+          };
         }]
       });
       var deffereds = {};
@@ -49,13 +51,13 @@
     return {
       show: show,
       error: function (message, caption, buttons, defaultButton, view) {
-        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-red"})
+        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-red"});
       },
       warning: function (message, caption, buttons, defaultButton, view) {
-        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-orange"})
+        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-orange"});
       },
       critical: function (message, caption, buttons, defaultButton, view) {
-        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-red"})
+        return show(message, caption || "Error!", buttons || ['Ok'], defaultButton, {headerClass: "bg-red"});
       }
 
     };

@@ -6,9 +6,9 @@
  */
 (function (angular) {
   'use strict';
-  var module = angular.module('general.directives.simpleInput', ['pascalprecht.translate', 'general.filter.underscoreToWords']);
+  var module = angular.module('general.directives.simpleInput', ['pascalprecht.translate', 'sun.diff.filters.textFormatter']);
   module.directive('simpleInput', ['$filter', '$translate', function ($filter, $translate) {
-    var labelFilter = $filter('underscoreToWords');
+    var labelFilter = $filter('toHuman');
     return {
       templateUrl: "general.directives.simpleInput/template.tpl.html",
       restrict: "E",

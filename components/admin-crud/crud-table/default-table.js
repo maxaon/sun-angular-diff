@@ -15,7 +15,7 @@
         crudOnlyColumns: '=?onlyColumns',
         formConfig: '='
       },
-      template: '<div ui-view="viewContent">View content</div>'
+      template: '<div ui-view="viewContent" class="row">View content</div>'
     };
   });
 
